@@ -56,7 +56,6 @@ export default function IndexPage() {
     
     // Initalize Start
     setData(strData)
-    // setMainString(strTest)
     setMainString(strArray.join(""))
     setStart(true)
 
