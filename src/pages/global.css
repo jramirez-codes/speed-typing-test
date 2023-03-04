@@ -1,0 +1,44 @@
+body {
+  background-color: #1a1a1d;
+  margin:0
+}
+
+/* Colors:
+c3073f
+950740
+*/
+
+button {
+  background-color: transparent;
+  padding: 0.5%;
+  border-radius: 2px;
+  border-color: gray;
+  font-size: larger;
+  color: white;
+}
+
+button:hover {
+  background-color: rgba(128,128,128,0.5);
+}
+
+.mainPage {
+  color: white;
+  text-align: center;
+}
+
+.display {
+  /* background-color: red; */
+  border: 1px solid;
+  border-color: gray;
+  border-radius: 5px;
+  border-width: 2px;
+
+  max-width: 90vw;
+  margin-left: 5vw;
+  margin-top: 2vh;
+}
+
+/* Characters */
+h2 {
+  margin:0
+}
