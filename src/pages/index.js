@@ -22,6 +22,11 @@ export default function IndexPage() {
   const [wpm, setWpm] = useState(0)
   const [accuracy, setAccuracy] = useState(0)
 
+  function handleReset() {
+    setStart(false)
+    setFinish(false)
+  }
+
   function handleFinish(acc) {
     // End Time
     var endTime = new Date()
@@ -86,6 +91,7 @@ export default function IndexPage() {
         }}
         >
           <Results wpm={wpm} accuracy={accuracy}/>
+          <button style={{marginTop:'2vh'}} onClick={()=>{handleReset()}}>Reset</button>
         </motion.div>
       ):(
         <></>
