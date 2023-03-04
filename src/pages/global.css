@@ -49,3 +49,16 @@ input {
   color: white;
   border-radius: 5px;
 }
+
+.timer {
+  background-color: transparent;
+  border: 2px solid;
+  border-color: gray;
+  color: white;
+  border-radius: 5px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 4px;
+  text-align: center;
+  font-size: large;
+} 

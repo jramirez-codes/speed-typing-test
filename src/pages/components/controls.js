@@ -1,12 +1,68 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import { Stack, Box } from "@mui/material";
 
 export default function Controls(props) {
   const [words, setWords] = useState(5)
+  const [timer, setTimer] = useState("00:00")
+  const [hasStarted, setHadStarted] = useState(false)
+
+  // Refence is needed for setInterval
+  const timerRef = useRef(timer)
+  function refSetTimer(newItem) {
+    timerRef.current = newItem
+    setTimer(newItem)
+  }
+  const hasStartedRef = useRef(hasStarted)
+  function refSetHadStarted(newItem) {
+    hasStartedRef.current = newItem
+    setHadStarted(newItem)
+  }
+
+  // Timer Used for value
+  useEffect(()=>{
+    if(!props.hadEnded) {
+      const myTimer = setInterval(()=>{
+        if(hasStartedRef.current) {
+          var timeCurr = new Date()
+          var timeDiff = timeCurr.getTime() - (props.start + 100)
+          if(timeDiff < 0) {
+            timeDiff = 0
+          }
+          timeDiff = Math.floor(timeDiff/10)
+
+          // Parse time into ms and sec
+          var ms = (timeDiff % 100).toString()
+          var sec = (Math.floor(timeDiff/100) % 100).toString()
+          if(ms.length === 1) {
+            ms = "0" + ms
+          }
+          if(sec.length === 1) {
+            sec = "0" + sec
+          }
+          if(sec === null || ms === null) {
+            sec = "00"
+            ms = "00"
+          }
+
+          var timeString = sec + ":" + ms
+    
+          // Set Timer
+          refSetTimer(timeString)
+        }
+        else {
+          console.log("not started")
+        }
+      }, 10)
+  
+      return () => clearInterval(myTimer)
+    }
+  },[props])
 
   function handleButton() {
     if(words !== "") {
       props.handleClick(words)
+      // setHadStarted(true)
+      refSetHadStarted(true)
     }
     else {
       alert("Number of word must be a integer")
@@ -25,6 +81,7 @@ export default function Controls(props) {
       <label htmlFor="numbWords">Number of Words</label>
       <input value={words} type="number" id="numbWords" onChange={(e)=>{setWords(e.target.value)}}/>
       <button onClick={()=>{handleButton()}}>Begin</button>
+      <div className="timer">{timer}</div>
       <div>
       </div>
     </Stack>

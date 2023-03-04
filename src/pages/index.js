@@ -9,7 +9,6 @@ async function generateRandString(numbWords) {
   var newData = await fetch('https://random-word-api.herokuapp.com/word?number='+numbWords)
     .then(response => response.json())
   newData = newData.join(" ")
-  console.log(newData)
   return newData
 }
 
@@ -25,6 +24,7 @@ export default function IndexPage() {
   function handleReset() {
     setStart(false)
     setFinish(false)
+    setStartTime(new Date())
   }
 
   function handleFinish(acc) {
@@ -32,10 +32,9 @@ export default function IndexPage() {
     var endTime = new Date()
 
     // Calculate words per min
-    var typeTime = endTime.getTime()- startTime.getTime()
-    var mins = (typeTime / 50) / 60
+    var typeTime = endTime.getTime() - (startTime + 100)
+    var mins = (typeTime / 1000) / 60
     var wordsPerMin = mainString.split(" ").length / mins
-    console.log(typeTime / 50)
 
     // Setting varibles
     setWpm(Math.floor(wordsPerMin))
@@ -48,25 +47,20 @@ export default function IndexPage() {
     var strTest = await generateRandString(words)
     var strArray = strTest.split("")
     
-    // Configure string data
-    var strData = []
-    strArray.forEach(e =>{
-      strData.push(e)
-    })
-    
     // Initalize Start
-    setData(strData)
+    setData(strArray)
     setMainString(strArray.join(""))
     setStart(true)
 
     // Start Timer
-    setStartTime(new Date())
+    var now = new Date()
+    setStartTime(now.getTime())
   }
 
   return(
     <div className="mainPage">
       <h1>Speed Typing Test</h1>
-      <Controls handleClick={handleClick}/>
+      <Controls handleClick={handleClick} hadEnded={finish} start={startTime}/>
       {start?(
         <Display answerKey={data} handleFinish={(e)=>{handleFinish(e)}}/>
       ):(
