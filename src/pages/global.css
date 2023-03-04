@@ -11,7 +11,7 @@ c3073f
 button {
   background-color: transparent;
   padding: 0.5%;
-  border-radius: 2px;
+  border-radius: 5px;
   border-color: gray;
   font-size: larger;
   color: white;
@@ -41,4 +41,11 @@ button:hover {
 /* Characters */
 h2 {
   margin:0
+}
+
+input {
+  background-color: transparent;
+  border-color: gray;
+  color: white;
+  border-radius: 5px;
 }

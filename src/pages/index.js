@@ -5,6 +5,14 @@ import Results from "./components/results";
 import { motion } from "framer-motion";
 import './global.css'
 
+async function generateRandString(numbWords) {
+  var newData = await fetch('https://random-word-api.herokuapp.com/word?number='+numbWords)
+    .then(response => response.json())
+  newData = newData.join(" ")
+  console.log(newData)
+  return newData
+}
+
 export default function IndexPage() {
   const [mainString, setMainString] = useState("This is the test string")
   const [start, setStart] = useState(false)
@@ -30,9 +38,9 @@ export default function IndexPage() {
     setAccuracy(acc)
   }
 
-  function handleClick() {
-    // Pick an random string
-    var strTest = "This is the test string, I hope this works"
+  async function handleClick(words) {
+    // Generate Random string
+    var strTest = await generateRandString(words)
     var strArray = strTest.split("")
     
     // Configure string data
@@ -43,7 +51,8 @@ export default function IndexPage() {
     
     // Initalize Start
     setData(strData)
-    setMainString(strTest)
+    // setMainString(strTest)
+    setMainString(strArray.join(""))
     setStart(true)
 
     // Start Timer
