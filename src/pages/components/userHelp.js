@@ -16,7 +16,6 @@ export default function UserHelp() {
       for(var i = 0; i < strArray.length; i++) {
         newHelpUpdate += strArray[i]
         setHelpString(newHelpUpdate)
-        console.log(strArray[i])
         await sleep(80)
       }
 

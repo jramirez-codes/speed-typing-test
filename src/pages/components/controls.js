@@ -4,7 +4,6 @@ import { Stack, Box } from "@mui/material";
 export default function Controls(props) {
   const [words, setWords] = useState(5)
   const [timer, setTimer] = useState("00:00")
-  const [hasStarted, setHadStarted] = useState(false)
 
   // Refence is needed for setInterval
   const timerRef = useRef(timer)
@@ -12,15 +11,10 @@ export default function Controls(props) {
     timerRef.current = newItem
     setTimer(newItem)
   }
-  const hasStartedRef = useRef(hasStarted)
-  function refSetHadStarted(newItem) {
-    hasStartedRef.current = newItem
-    setHadStarted(newItem)
-  }
 
   // Timer Used for value
   useEffect(()=>{
-    if(!props.hadEnded && hasStartedRef.current) {
+    if(!props.hadEnded && props.hasStarted) {
       const myTimer = setInterval(()=>{
         var timeCurr = new Date()
         var timeDiff = timeCurr.getTime() - (props.start + 100)
@@ -54,10 +48,9 @@ export default function Controls(props) {
 
   function handleButton() {
     // To make sure button doesnt click when space bar is bressed
-    if(!hasStartedRef.current) {
+    if(!props.hasStarted) {
       if(words !== "") {
         props.handleClick(words)
-        refSetHadStarted(true)
       }
       else {
         alert("Number of word must be a integer")
@@ -77,8 +70,6 @@ export default function Controls(props) {
       <input value={words} type="number" id="numbWords" onChange={(e)=>{setWords(e.target.value)}}/>
       <button onClick={()=>{handleButton()}}>Begin</button>
       <div className="timer">{timer}</div>
-      <div>
-      </div>
     </Stack>
   </Box>
   )

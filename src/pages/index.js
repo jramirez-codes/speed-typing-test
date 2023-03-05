@@ -14,10 +14,16 @@ async function generateRandString(numbWords) {
 }
 
 export default function IndexPage() {
-  const [mainString, setMainString] = useState("This is the test string")
+  // State variables
   const [start, setStart] = useState(false)
   const [finish, setFinish] = useState(false)
+  const [results, setResults] = useState(false)
+
+  // Inputs String / Data
+  const [mainString, setMainString] = useState("This is the test string")
   const [data, setData] = useState([])
+
+  // User results
   const [startTime, setStartTime] = useState(new Date())
   const [wpm, setWpm] = useState(0)
   const [accuracy, setAccuracy] = useState(0)
@@ -41,6 +47,7 @@ export default function IndexPage() {
     setWpm(Math.floor(wordsPerMin))
     setFinish(true)
     setAccuracy(acc)
+    setResults(true)
   }
 
   async function handleClick(words) {
@@ -61,7 +68,7 @@ export default function IndexPage() {
   return(
     <div className="mainPage">
       <h1>Speed Typing Test</h1>
-      <Controls handleClick={handleClick} hadEnded={finish} start={startTime}/>
+      <Controls handleClick={handleClick} hadEnded={finish} hasStarted={start} start={startTime}/>
       {start?(
         <Display answerKey={data} handleFinish={(e)=>{handleFinish(e)}}/>
       ):(
@@ -87,6 +94,12 @@ export default function IndexPage() {
           <Results wpm={wpm} accuracy={accuracy}/>
           <button style={{marginTop:'2vh'}} onClick={()=>{handleReset()}}>Reset</button>
         </motion.div>
+      ):(
+        <></>
+      )}
+      {results?(
+        <Results/>
+        // Should be Leader rankings
       ):(
         <></>
       )}
