@@ -20,38 +20,32 @@ export default function Controls(props) {
 
   // Timer Used for value
   useEffect(()=>{
-    if(!props.hadEnded) {
+    if(!props.hadEnded && hasStartedRef.current) {
       const myTimer = setInterval(()=>{
-        if(hasStartedRef.current) {
-          var timeCurr = new Date()
-          var timeDiff = timeCurr.getTime() - (props.start + 100)
-          if(timeDiff < 0) {
-            timeDiff = 0
-          }
-          timeDiff = Math.floor(timeDiff/10)
-
-          // Parse time into ms and sec
-          var ms = (timeDiff % 100).toString()
-          var sec = (Math.floor(timeDiff/100) % 100).toString()
-          if(ms.length === 1) {
-            ms = "0" + ms
-          }
-          if(sec.length === 1) {
-            sec = "0" + sec
-          }
-          if(sec === null || ms === null) {
-            sec = "00"
-            ms = "00"
-          }
-
-          var timeString = sec + ":" + ms
-    
-          // Set Timer
-          refSetTimer(timeString)
+        var timeCurr = new Date()
+        var timeDiff = timeCurr.getTime() - (props.start + 100)
+        if(timeDiff < 0) {
+          timeDiff = 0
         }
-        else {
-          console.log("not started")
+        timeDiff = Math.floor(timeDiff/10)
+
+        // Parse time into ms and sec
+        var ms = (timeDiff % 100).toString()
+        var sec = (Math.floor(timeDiff/100) % 100).toString()
+        if(ms.length === 1) {
+          ms = "0" + ms
         }
+        if(sec.length === 1) {
+          sec = "0" + sec
+        }
+        if(sec === null || ms === null) {
+          sec = "00"
+          ms = "00"
+        }
+        var timeString = sec + ":" + ms
+  
+        // Set Timer
+        refSetTimer(timeString)
       }, 10)
   
       return () => clearInterval(myTimer)
@@ -59,15 +53,19 @@ export default function Controls(props) {
   },[props])
 
   function handleButton() {
-    if(words !== "") {
-      props.handleClick(words)
-      // setHadStarted(true)
-      refSetHadStarted(true)
+    // To make sure button doesnt click when space bar is bressed
+    if(!hasStartedRef.current) {
+      if(words !== "") {
+        props.handleClick(words)
+        refSetHadStarted(true)
+      }
+      else {
+        alert("Number of word must be a integer")
+        setWords(5)
+      }
+      console.log("button Clicked")
     }
-    else {
-      alert("Number of word must be a integer")
-      setWords(5)
-    }
+
   }
   return(
     <Box
