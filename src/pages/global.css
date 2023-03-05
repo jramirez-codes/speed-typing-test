@@ -1,12 +1,20 @@
 body {
-  background-color: #1a1a1d;
-  margin:0
+  background-color: #1C2021;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 /* Colors:
 c3073f
 950740
+2A2B2F input for table
 */
+
+
+.myTitle{
+  background-color: #161618;
+  margin:0
+}
 
 button {
   background-color: transparent;
@@ -15,6 +23,8 @@ button {
   border-color: gray;
   font-size: larger;
   color: white;
+  /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 button:hover {
@@ -27,7 +37,6 @@ button:hover {
 }
 
 .display {
-  /* background-color: red; */
   border: 1px solid;
   border-color: gray;
   border-radius: 5px;
@@ -47,6 +56,7 @@ input {
   background-color: transparent;
   border-color: gray;
   color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   border-radius: 5px;
 }
 

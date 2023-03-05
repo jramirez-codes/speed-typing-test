@@ -67,7 +67,9 @@ export default function IndexPage() {
 
   return(
     <div className="mainPage">
-      <h1>Speed Typing Test</h1>
+      <div className="myTitle">
+        <h1 style={{marginTop:0, textAlign: 'left'}}>Speed Typing Test</h1>
+      </div>
       <Controls handleClick={handleClick} hadEnded={finish} hasStarted={start} start={startTime}/>
       {start?(
         <Display answerKey={data} handleFinish={(e)=>{handleFinish(e)}}/>
