@@ -41,10 +41,9 @@ button:hover {
   border-color: gray;
   border-radius: 5px;
   border-width: 2px;
-
-  max-width: 90vw;
+  /* max-width: 90vw;
   margin-left: 5vw;
-  margin-top: 2vh;
+  margin-top: 2vh; */
 }
 
 /* Characters */
