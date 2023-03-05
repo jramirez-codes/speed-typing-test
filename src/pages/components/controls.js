@@ -73,9 +73,6 @@ export default function Controls(props) {
       justifyContent="center"
       >
     <Stack direction="row" spacing={1} style={{textAlign:'center'}}>
-      {/* <div>
-        <h2>Time</h2>
-      </div> */}
       <label htmlFor="numbWords">Number of Words</label>
       <input value={words} type="number" id="numbWords" onChange={(e)=>{setWords(e.target.value)}}/>
       <button onClick={()=>{handleButton()}}>Begin</button>

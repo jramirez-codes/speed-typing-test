@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import Controls from "./components/controls";
 import Display from "./components/display";
 import Results from "./components/results";
+import UserHelp from "./components/userHelp";
 import { motion } from "framer-motion";
 import './global.css'
 
@@ -64,7 +65,7 @@ export default function IndexPage() {
       {start?(
         <Display answerKey={data} handleFinish={(e)=>{handleFinish(e)}}/>
       ):(
-        <></>
+        <UserHelp/>
       )}
       {finish?(
         <motion.div
