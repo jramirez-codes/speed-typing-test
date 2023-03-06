@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from "react";
 import { Stack, Box, Grid } from "@mui/material";
 import WordsSlider from "./controlsComponents/slider";
 import TypeToggle from "./controlsComponents/toggle";
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 export default function Controls(props) {
   const [words, setWords] = useState(30)
@@ -133,11 +134,32 @@ export default function Controls(props) {
       <Box
         display="flex"
         justifyContent="center"
-        style={{marginTop:'1vh'}}
+        style={{marginTop:'2vh'}}
         >
-        <Stack direction="row" spacing={1} style={{textAlign:'center'}}>
-          <button onClick={()=>{handleButton()}}>Begin</button>
-          <div className="infoDiv">{timer}</div>
+        <Stack direction="column" spacing={1} style={{textAlign:'center'}}>
+          <Grid container direction="row" spacing={1} style={{paddingLeft:'35px', paddingRight:"35px"}}>
+            <Grid item xs={7} sm={7} md={7} lg={7}>
+              <h4>Generate Prompt</h4>
+            </Grid>
+            <Grid item xs={2} sm={2} md={2} lg={2}/>
+            <Grid item xs={3} sm={3} md={3} lg={3}>
+              <div className="infoDiv">{timer}</div>
+            </Grid>
+          </Grid>
+          <Box
+            display="flex"
+            justifyContent="center"
+            style={{marginTop:'1vh', width:300}}
+          >
+            <Grid container direction="row" spacing={1} style={{textAlign:'center', maxWidth:"80%"}}>
+              <Grid item xs={9} sm={9} md={9} lg={9}>
+                <button onClick={()=>{handleButton()}} style={{width:"100%", height: "100%"}}>Begin</button>
+              </Grid>
+              <Grid item xs={3} sm={3} md={3} lg={3}>
+                <button onClick={()=>{props.handleReset(); setTimer("00:00")}} style={{width:"100%", paddingTop:'5px'}}><RestartAltIcon/></button>
+              </Grid>
+            </Grid>
+          </Box>
         </Stack>
       </Box>
     </div>

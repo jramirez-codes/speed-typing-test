@@ -119,7 +119,8 @@ export default function IndexPage() {
             handleClick={handleClick} 
             hadEnded={finish} 
             hasStarted={start} 
-            start={startTime}/>
+            start={startTime}
+            handleReset={handleReset}/>
           </div>
         </Grid>
         <Grid item xs={12} sm={7} md={8} lg={9}>
