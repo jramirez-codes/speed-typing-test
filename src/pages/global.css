@@ -15,8 +15,6 @@ h4 {
   margin:0;
 }
 
-
-
 button {
   background-color: transparent;
   padding: 0.5%;
@@ -34,7 +32,8 @@ button:hover {
 
 .myTitle{
   background-color: #161618;
-  margin:0
+  margin: 0;
+  padding-bottom: 5px;
 }
 
 .mainPage {
@@ -98,6 +97,22 @@ input {
 .sizer {
   background-color: #1C2021;
   padding: 2%;
-  /* min-height: 100vh; */
-  /* max-height: 100%; */
 }
+
+.toggleDiv {
+  background-color: rgba(191, 191, 191, 0.5);
+  /* opacity: 50%; */
+  border: 2px solid;
+  border-color: transparent;
+  color: white;
+  border-radius: 5px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 1px;
+  text-align: center;
+  font-size: large;
+}
+
+/* .toggleDiv: {
+  background-color: rgba(82, 175, 119, 0.5);
+} */

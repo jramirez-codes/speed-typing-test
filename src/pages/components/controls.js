@@ -1,11 +1,14 @@
 import React, {useState, useEffect, useRef} from "react";
 import { Stack, Box, Grid } from "@mui/material";
 import WordsSlider from "./controlsComponents/slider";
+import TypeToggle from "./controlsComponents/toggle";
 
 export default function Controls(props) {
-  const [words, setWords] = useState(5)
+  const [words, setWords] = useState(30)
   const [timer, setTimer] = useState("00:00")
   const [newStyle, setNewStyle] = useState({})
+
+  const [genType, setGenType] = useState("RS")
 
   // Used for finding size of div
   const ref = useRef(null);
@@ -80,7 +83,7 @@ export default function Controls(props) {
     // To make sure button doesnt click when space bar is bressed
     if(!props.hasStarted) {
       if(words !== "") {
-        props.handleClick(words)
+        props.handleClick(words, genType)
       }
       else {
         alert("Number of word must be a integer")
@@ -113,12 +116,29 @@ export default function Controls(props) {
       <Box
         display="flex"
         justifyContent="center"
+        >
+        <Stack direction="column" spacing={1} style={{textAlign:'center'}}>
+          <Grid container direction="row" spacing={1} style={{paddingLeft:'30px', paddingRight:"35px"}}>
+            <Grid item xs={7} sm={7} md={7} lg={7}>
+              <h4>Sentance Type</h4>
+            </Grid>
+            <Grid item xs={2} sm={2} md={2} lg={2}/>
+            <Grid item xs={3} sm={3} md={3} lg={3}>
+              <div className="infoDiv">{genType}</div>
+            </Grid>
+          </Grid>
+          <TypeToggle genType={genType} setGenType={setGenType}/>
+        </Stack>
+      </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
         style={{marginTop:'1vh'}}
         >
-      <Stack direction="row" spacing={1} style={{textAlign:'center'}}>
-        <button onClick={()=>{handleButton()}}>Begin</button>
-        <div className="infoDiv">{timer}</div>
-      </Stack>
+        <Stack direction="row" spacing={1} style={{textAlign:'center'}}>
+          <button onClick={()=>{handleButton()}}>Begin</button>
+          <div className="infoDiv">{timer}</div>
+        </Stack>
       </Box>
     </div>
   )

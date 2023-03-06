@@ -5,12 +5,53 @@ import Results from "./components/results";
 import UserHelp from "./components/userHelp";
 import { Grid } from "@mui/material";
 import { motion } from "framer-motion";
+import senData from '../assets/sentances.json'
 import './global.css'
 
-async function generateRandString(numbWords) {
-  var newData = await fetch('https://random-word-api.herokuapp.com/word?number='+numbWords)
-    .then(response => response.json())
-  newData = newData.join(" ")
+async function generateRandString(numbWords, genType) {
+  // vars
+  var newData
+
+  if(genType === "RW") {
+    // Random words
+    newData = await fetch('https://random-word-api.herokuapp.com/word?number='+numbWords)
+      .then(response => response.json())
+    newData = newData.join(" ")
+  }
+  else {
+      // Sentances
+      var senArr = senData.data.split("\n")
+    
+      // Get Random Sentances
+      var currWords = []
+      var indexSet = new Set()
+      var wordArr = ""
+      var randIndex = 0
+      var count = 0
+      while(currWords.length < numbWords) {
+        randIndex = Math.floor(Math.random() * senArr.length);
+        if(!indexSet.has(randIndex)) {
+          // Get random sentance from arr
+          wordArr = senArr[randIndex]
+          wordArr = wordArr.split(" ")
+          indexSet.add(randIndex)
+      
+          // Add to word list
+          if((currWords.length + wordArr.length) <= numbWords) {
+            currWords = currWords.concat(wordArr)
+          }
+          else {
+            count = 0
+            while(currWords.length < numbWords) {
+              currWords.push(wordArr[count])
+              count += 1
+            }
+          }
+        } 
+      }
+      newData = currWords.join(" ")
+  }
+
   return newData
 }
 
@@ -51,9 +92,9 @@ export default function IndexPage() {
     setResults(true)
   }
 
-  async function handleClick(words) {
+  async function handleClick(words, genType) {
     // Generate Random string
-    var strTest = await generateRandString(words)
+    var strTest = await generateRandString(words, genType)
     var strArray = strTest.split("")
     
     // Initalize Start
@@ -71,10 +112,14 @@ export default function IndexPage() {
       <div className="myTitle">
         <h1 style={{marginTop:0, textAlign: 'left'}}>Speed Typing Test</h1>
       </div>
-      <Grid container spacing={0} style={{marginTop:'-21px'}}>
+      <Grid container spacing={0} style={{marginTop:'-22px'}}>
         <Grid item xs={12} sm={5} md={4} lg={3}>
           <div className="controls">
-            <Controls handleClick={handleClick} hadEnded={finish} hasStarted={start} start={startTime}/>
+            <Controls 
+            handleClick={handleClick} 
+            hadEnded={finish} 
+            hasStarted={start} 
+            start={startTime}/>
           </div>
         </Grid>
         <Grid item xs={12} sm={7} md={8} lg={9}>
