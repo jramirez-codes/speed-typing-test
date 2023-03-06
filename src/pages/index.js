@@ -71,44 +71,49 @@ export default function IndexPage() {
       <div className="myTitle">
         <h1 style={{marginTop:0, textAlign: 'left'}}>Speed Typing Test</h1>
       </div>
-      <Grid container>
-        <Grid item sm={12} md={6} lg={6}>
-          <Controls handleClick={handleClick} hadEnded={finish} hasStarted={start} start={startTime}/>
+      <Grid container spacing={0} style={{marginTop:'-21px'}}>
+        <Grid item xs={12} sm={5} md={4} lg={3}>
+          <div className="controls">
+            <Controls handleClick={handleClick} hadEnded={finish} hasStarted={start} start={startTime}/>
+          </div>
         </Grid>
-        <Grid item sm={12} md={6} lg={6}>
-          {start?(
-          <Display answerKey={data} handleFinish={(e)=>{handleFinish(e)}}/>
-          ):(
-            <UserHelp/>
-          )}
-          {finish?(
-            <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              default: {
-                duration: 0.1,
-                ease: [0, 0.71, 0.2, 1.01]
-              },
-              scale: {
-                type: "linear",
-                damping: 5,
-                stiffness: 100,
-                restDelta: 0.001
-              }
-            }}
-            >
-              <Results wpm={wpm} accuracy={accuracy}/>
-              <button style={{marginTop:'2vh'}} onClick={()=>{handleReset()}}>Reset</button>
-            </motion.div>
-          ):(
-            <></>
-          )}
+        <Grid item xs={12} sm={7} md={8} lg={9}>
+          <div className="sizer">
+            {start?(
+            <Display answerKey={data} handleFinish={(e)=>{handleFinish(e)}}/>
+            ):(
+              <UserHelp/>
+            )}
+            {finish?(
+              <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                default: {
+                  duration: 0.1,
+                  ease: [0, 0.71, 0.2, 1.01]
+                },
+                scale: {
+                  type: "linear",
+                  damping: 5,
+                  stiffness: 100,
+                  restDelta: 0.001
+                }
+              }}
+              >
+                <Results wpm={wpm} accuracy={accuracy}/>
+                <button style={{marginTop:'2vh'}} onClick={()=>{handleReset()}}>Reset</button>
+              </motion.div>
+            ):(
+              <></>
+            )}
+          </div>
         </Grid>
       </Grid>
       {results?(
-        <Results/>
+        // <Results/>
         // Should be Leader rankings
+        <></>
       ):(
         <></>
       )}

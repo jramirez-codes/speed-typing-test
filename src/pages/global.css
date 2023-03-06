@@ -10,11 +10,12 @@ c3073f
 2A2B2F input for table
 */
 
-
-.myTitle{
-  background-color: #161618;
-  margin:0
+/* h4 is the control font */
+h4 {
+  margin:0;
 }
+
+
 
 button {
   background-color: transparent;
@@ -31,6 +32,11 @@ button:hover {
   background-color: rgba(128,128,128,0.5);
 }
 
+.myTitle{
+  background-color: #161618;
+  margin:0
+}
+
 .mainPage {
   color: white;
   text-align: center;
@@ -42,7 +48,6 @@ button:hover {
   border-radius: 5px;
   border-width: 2px;
   /* max-width: 90vw;
-  margin-left: 5vw;
   margin-top: 2vh; */
 }
 
@@ -71,3 +76,28 @@ input {
   text-align: center;
   font-size: large;
 } 
+
+.infoDiv {
+  background-color: #1C2021;
+  border: 2px solid;
+  border-color: transparent;
+  color: white;
+  border-radius: 5px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 1px;
+  text-align: center;
+  font-size: large;
+}
+
+.controls {
+  background-color: #2A2B2F;
+  padding: 2%;
+}
+
+.sizer {
+  background-color: #1C2021;
+  padding: 2%;
+  /* min-height: 100vh; */
+  /* max-height: 100%; */
+}

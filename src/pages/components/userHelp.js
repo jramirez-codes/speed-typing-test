@@ -18,9 +18,7 @@ export default function UserHelp() {
         setHelpString(newHelpUpdate)
         await sleep(80)
       }
-
     }
-
     animationHandler()
 
   },[])

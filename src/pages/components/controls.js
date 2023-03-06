@@ -1,9 +1,23 @@
 import React, {useState, useEffect, useRef} from "react";
-import { Stack, Box } from "@mui/material";
+import { Stack, Box, Grid } from "@mui/material";
+import WordsSlider from "./controlsComponents/slider";
 
 export default function Controls(props) {
   const [words, setWords] = useState(5)
   const [timer, setTimer] = useState("00:00")
+  const [newStyle, setNewStyle] = useState({})
+
+  // Used for finding size of div
+  const ref = useRef(null);
+  
+  // Inital Div
+  useEffect(() => {
+    if(ref.current && window.innerWidth) {
+      if((window.innerWidth - ref.current.offsetWidth) > 50) {
+        setNewStyle({maxHeight: "100%", height:'100vh'})
+      }
+    }
+  }, []);
 
   // Refence is needed for setInterval
   const timerRef = useRef(timer)
@@ -11,6 +25,22 @@ export default function Controls(props) {
     timerRef.current = newItem
     setTimer(newItem)
   }
+
+  // Event Listener for window resize
+  useEffect(()=>{
+    function handleResize() {
+      if(ref.current && window.innerWidth) {
+        if((window.innerWidth - ref.current.offsetWidth) > 50) {
+          setNewStyle({maxHeight: "100%", height:'100vh', overflow:"hidden"})
+        }
+        else {
+          setNewStyle({})
+        }
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  },[])
 
   // Timer Used for value
   useEffect(()=>{
@@ -60,17 +90,36 @@ export default function Controls(props) {
     }
 
   }
+
   return(
-    <Box
-      display="flex"
-      justifyContent="center"
-      >
-    <Stack direction="row" spacing={1} style={{textAlign:'center'}}>
-      <label htmlFor="numbWords">Number of Words</label>
-      <input value={words} type="number" id="numbWords" onChange={(e)=>{setWords(e.target.value)}}/>
-      <button onClick={()=>{handleButton()}}>Begin</button>
-      <div className="timer">{timer}</div>
-    </Stack>
-  </Box>
+    <div ref={ref} style={newStyle}>
+      <Box
+        display="flex"
+        justifyContent="center"
+        >
+        <Stack direction="column" spacing={1} style={{textAlign:'center'}}>
+          <Grid container direction="row" spacing={1}>
+            <Grid item xs={8} sm={8} md={8} lg={8}>
+              <h4>Number of Words</h4>
+            </Grid>
+            <Grid item xs={1} sm={1} md={1} lg={1}/>
+            <Grid item xs={3} sm={3} md={3} lg={3}>
+              <div className="infoDiv">{words}</div>
+            </Grid>
+          </Grid>
+          <WordsSlider setWords={setWords}/>
+        </Stack>
+      </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        style={{marginTop:'1vh'}}
+        >
+      <Stack direction="row" spacing={1} style={{textAlign:'center'}}>
+        <button onClick={()=>{handleButton()}}>Begin</button>
+        <div className="infoDiv">{timer}</div>
+      </Stack>
+      </Box>
+    </div>
   )
 }
