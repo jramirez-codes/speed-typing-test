@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { Grid, Box } from "@mui/material";
 
 export default function TypeToggle(props) {
@@ -6,18 +6,8 @@ export default function TypeToggle(props) {
     set: {backgroundColor:'#52af77'},
     unset: {}
   }
-
   const [currStyle, setCurrStyle] = useState([colorCode.unset, colorCode.set])
 
-  // Inital color of the toggle
-  // useEffect(()=>{
-  //   if(props.genType === "sentances") {
-  //     setCurrStyle([colorCode.unset, colorCode.set])
-  //   }
-  //   else {
-  //     setCurrStyle([colorCode.set, colorCode.unset])
-  //   }
-  // },[])
 
   function handleClick(genType) {
     console.log("toggle clicked ", genType)
@@ -38,7 +28,6 @@ export default function TypeToggle(props) {
       >
       <Grid container direction="row" spacing={1} style={{textAlign:'center', maxWidth:"80%"}}>
         <Grid item xs={6} sm={6} md={6} lg={6}>
-          {/* <div className="toggleDiv" onClick={()=>{handleClick("RW")}} style={{backgroundColor:currStyle[0]}}>Random Words</div> */}
           <button onClick={()=>{handleClick("RW")}} style={currStyle[0]}>Random Words</button>
         </Grid>
         <Grid item xs={6} sm={6} md={6} lg={6}>

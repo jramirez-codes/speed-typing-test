@@ -56,7 +56,6 @@ export default function Display(props) {
       // Set Confetti
       const handleConfetti = async() => {
         setConfetti(true)
-        console.log("SET CONFETTI")
         await new Promise(r => setTimeout(r, 2200));
         setConfetti(false)
       }
@@ -131,7 +130,7 @@ export default function Display(props) {
 
   return(
     <div className="display">
-      {confetti && <ConfettiExplosion style={{marginLeft:'50%'}}/>}
+      <>{confetti && <ConfettiExplosion style={{marginLeft:'50%'}}/>}</>
       <Stack direction={"row"} sx={{flexWrap: 'wrap'}}>
         {displayData.map((obj,idx)=>{
           if(obj.value === " ") {

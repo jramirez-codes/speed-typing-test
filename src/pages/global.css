@@ -100,6 +100,7 @@ h2 {
 .sizer {
   background-color: #1C2021;
   padding: 2%;
+  overflow-y: 'scroll';
 }
 
 .toggleDiv {
