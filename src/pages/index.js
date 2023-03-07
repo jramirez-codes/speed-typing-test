@@ -110,9 +110,9 @@ export default function IndexPage() {
   return(
     <div className="mainPage">
       <div className="myTitle">
-        <h1 style={{marginTop:0, textAlign: 'left'}}>Speed Typing Test</h1>
+        <h1 style={{marginTop:0, textAlign: 'left', marginBottom:0, marginLeft:'1vw'}}>Speed Typing Test</h1>
       </div>
-      <Grid container spacing={0} style={{marginTop:'-22px'}}>
+      <Grid container spacing={0} style={{}}>
         <Grid item xs={12} sm={5} md={4} lg={3}>
           <div className="controls">
             <Controls 

@@ -7,18 +7,21 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 export default function Controls(props) {
   const [words, setWords] = useState(30)
   const [timer, setTimer] = useState("00:00")
-  const [newStyle, setNewStyle] = useState({})
-
   const [genType, setGenType] = useState("RS")
+  
+  // For Styles
+  const [newStyle, setNewStyle] = useState({})
+  const headerOffset = 60
 
   // Used for finding size of div
   const ref = useRef(null);
-  
+
   // Inital Div
   useEffect(() => {
     if(ref.current && window.innerWidth) {
       if((window.innerWidth - ref.current.offsetWidth) > 50) {
-        setNewStyle({maxHeight: "100%", height:'100vh'})
+        var newHeight = window.innerHeight - headerOffset
+        setNewStyle({maxHeight: "100%", height:newHeight, overflowY: 'scroll'})
       }
     }
   }, []);
@@ -35,7 +38,8 @@ export default function Controls(props) {
     function handleResize() {
       if(ref.current && window.innerWidth) {
         if((window.innerWidth - ref.current.offsetWidth) > 50) {
-          setNewStyle({maxHeight: "100%", height:'100vh', overflow:"hidden"})
+          var newHeight = window.innerHeight - headerOffset
+          setNewStyle({maxHeight: "100%", height: newHeight, overflowY: 'scroll'})
         }
         else {
           setNewStyle({})
