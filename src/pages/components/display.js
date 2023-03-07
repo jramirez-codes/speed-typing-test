@@ -1,9 +1,11 @@
 import React, {useEffect, useState, useRef} from "react";
+import ConfettiExplosion from 'react-confetti-explosion';
 import { Stack } from "@mui/material";
 
 export default function Display(props) {
   const [typeHistory, setTypeHistory] = useState([])
   const [displayData, setDisplayData] = useState([])
+  const [confetti, setConfetti] = useState(false)
 
   const colorCode = {
     correct: '#41b3a3',
@@ -50,6 +52,16 @@ export default function Display(props) {
       })
       // Trigger finish
       props.handleFinish(Math.floor((correctNumb / displayData.length)*100))
+
+      // Set Confetti
+      const handleConfetti = async() => {
+        setConfetti(true)
+        console.log("SET CONFETTI")
+        await new Promise(r => setTimeout(r, 2200));
+        setConfetti(false)
+      }
+      handleConfetti()
+
     }
   }, [typeHistory])
 
@@ -119,6 +131,7 @@ export default function Display(props) {
 
   return(
     <div className="display">
+      {confetti && <ConfettiExplosion style={{marginLeft:'50%'}}/>}
       <Stack direction={"row"} sx={{flexWrap: 'wrap'}}>
         {displayData.map((obj,idx)=>{
           if(obj.value === " ") {
