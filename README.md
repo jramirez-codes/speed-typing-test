@@ -12,4 +12,4 @@ This is a speed typing test static web application, that helps users evauluate h
 https://youtu.be/Iit5d3bioyM
 
 ## Pictures
-![Example 1](./demoPics/example.PNG)
+![Example 1](./demoPics/example.png)
