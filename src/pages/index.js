@@ -7,6 +7,7 @@ import { Grid } from "@mui/material";
 import { motion } from "framer-motion";
 import senData from '../assets/sentances.json'
 import './global.css'
+import Rankings from "./components/rankings";
 
 async function generateRandString(numbWords, genType) {
   // vars
@@ -59,7 +60,7 @@ export default function IndexPage() {
   // State variables
   const [start, setStart] = useState(false)
   const [finish, setFinish] = useState(false)
-  const [results, setResults] = useState(false)
+  const [results, setResults] = useState(true)
 
   // Inputs String / Data
   const [mainString, setMainString] = useState("This is the test string")
@@ -126,7 +127,9 @@ export default function IndexPage() {
         <Grid item xs={12} sm={7} md={8} lg={9}>
           <div className="sizer">
             {start?(
-            <Display answerKey={data} handleFinish={(e)=>{handleFinish(e)}}/>
+              <>
+                <Display answerKey={data} handleFinish={(e)=>{handleFinish(e)}}/>
+              </>
             ):(
               <UserHelp/>
             )}
@@ -153,16 +156,15 @@ export default function IndexPage() {
             ):(
               <></>
             )}
+            {results?(
+                <Rankings/>
+                // Should be Leader rankings
+              ):(
+                <></>
+            )}
           </div>
         </Grid>
       </Grid>
-      {results?(
-        // <Results/>
-        // Should be Leader rankings
-        <></>
-      ):(
-        <></>
-      )}
     </div>
   )
 }

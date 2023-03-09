@@ -117,6 +117,9 @@ h2 {
   font-size: large;
 }
 
-/* .toggleDiv: {
-  background-color: rgba(82, 175, 119, 0.5);
-} */
+.leaderboard {
+  background-color: #2A2B2F;
+  border-radius: 5px;
+  padding-bottom: 2vh;
+  max-width: 500px;
+}
