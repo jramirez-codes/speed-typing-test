@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
-import {Stack, Grid, Box} from '@mui/material'
+import {Stack, Box} from '@mui/material'
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 export default function Rankings() {
   const [leaderboard, setLeaderboard] = useState([])
@@ -30,30 +31,46 @@ export default function Rankings() {
   },[])
 
   return(
-    <div className="leaderboard">
-      <h1>Leaderboard</h1>
-      <Box
+    <Box
       display="flex"
       justifyContent="center"
       style={{marginTop:'2vh'}}
       >
-        <Stack direction="column" spacing={1}>
-          {leaderboard.map((obj, idx)=> {
-            return(
-              <Stack
-              direction="row"
-              spacing={1}
-              >
-                <div className="infoDiv" style={{minWidth:"30px"}}>{"#"+(idx+1)}</div>
-                <div className="infoDiv" style={{minWidth:"100px"}}>{obj.playerName.S}</div>
-                <div className="infoDiv" style={{minWidth:"75px"}}>{obj.points.N}</div>
-                <div className="infoDiv" style={{minWidth:"30px"}}>{obj.wpm.N}</div>
-                <div className="infoDiv" style={{minWidth:"45px"}}>{obj.accuracy.N+"%"}</div>
-              </Stack>
-            )
-          })}
-        </Stack>
-      </Box>
-    </div>
+      <div className="leaderboard">
+        <Box
+        display="flex"
+        justifyContent="center"
+        style={{marginTop:'2vh', marginLeft:"2vw", marginRight:'2vw'}}
+        >
+          <Stack direction="row" spacing={2}>
+            <AutoAwesomeIcon style={{marginTop:'1vh'}} color="warning"/>
+            <h1>Leaderboard</h1>
+            <AutoAwesomeIcon style={{marginTop:'1vh'}} color="error"/>
+          </Stack>
+        </Box>
+        <Box
+        display="flex"
+        justifyContent="center"
+        style={{marginTop:'2vh', marginLeft:"2vw", marginRight:'2vw'}}
+        >
+          <Stack direction="column" spacing={1}>
+            {leaderboard.map((obj, idx)=> {
+              return(
+                <Stack
+                direction="row"
+                spacing={1}
+                >
+                  <div className="infoDiv" style={{minWidth:"30px"}}>{"#"+(idx+1)}</div>
+                  <div className="infoDiv" style={{minWidth:"100px"}}>{obj.playerName.S}</div>
+                  <div className="infoDiv" style={{minWidth:"75px"}}>{obj.points.N}</div>
+                  <div className="infoDiv" style={{minWidth:"30px"}}>{obj.wpm.N}</div>
+                  <div className="infoDiv" style={{minWidth:"45px"}}>{obj.accuracy.N+"%"}</div>
+                </Stack>
+              )
+            })}
+          </Stack>
+        </Box>
+      </div>
+    </Box>
   )
 }
