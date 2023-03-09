@@ -54,6 +54,16 @@ export default function Rankings() {
         style={{marginTop:'2vh', marginLeft:"2vw", marginRight:'2vw'}}
         >
           <Stack direction="column" spacing={1}>
+            <Stack
+            direction="row"
+            spacing={1}
+            >
+              <div className="infoDiv" style={{minWidth:"30px"}}>Rank</div>
+              <div className="infoDiv" style={{minWidth:"100px"}}>Player Name</div>
+              <div className="infoDiv" style={{minWidth:"75px"}}>Points</div>
+              <div className="infoDiv" style={{minWidth:"30px"}}>WPM</div>
+              <div className="infoDiv" style={{minWidth:"45px"}}>Percent</div>
+            </Stack>
             {leaderboard.map((obj, idx)=> {
               return(
                 <Stack
