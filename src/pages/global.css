@@ -123,3 +123,12 @@ h2 {
   padding-bottom: 2vh;
   max-width: 500px;
 }
+
+.results {
+  margin-top: 2vh;
+  background-color: #2A2B2F;
+  border-radius: 5px;
+  padding-bottom: 1vh;
+  padding-top: 1vh;
+  width: 250px;
+}

@@ -58,23 +58,24 @@ export default function Rankings() {
             direction="row"
             spacing={1}
             >
-              <div className="infoDiv" style={{minWidth:"30px"}}>Rank</div>
-              <div className="infoDiv" style={{minWidth:"100px"}}>Player Name</div>
-              <div className="infoDiv" style={{minWidth:"75px"}}>Points</div>
-              <div className="infoDiv" style={{minWidth:"30px"}}>WPM</div>
-              <div className="infoDiv" style={{minWidth:"45px"}}>Percent</div>
+              <div className="infoDiv" style={{width:"40px"}}>Rank</div>
+              <div className="infoDiv" style={{width:"80px"}}>Player</div>
+              <div className="infoDiv" style={{width:"75px"}}>Points</div>
+              <div className="infoDiv" style={{width:"45px"}}>WPM</div>
+              <div className="infoDiv" style={{width:"65px"}}>Accuracy</div>
             </Stack>
             {leaderboard.map((obj, idx)=> {
               return(
                 <Stack
                 direction="row"
                 spacing={1}
+                key={idx}
                 >
-                  <div className="infoDiv" style={{minWidth:"30px"}}>{"#"+(idx+1)}</div>
-                  <div className="infoDiv" style={{minWidth:"100px"}}>{obj.playerName.S}</div>
-                  <div className="infoDiv" style={{minWidth:"75px"}}>{obj.points.N}</div>
-                  <div className="infoDiv" style={{minWidth:"30px"}}>{obj.wpm.N}</div>
-                  <div className="infoDiv" style={{minWidth:"45px"}}>{obj.accuracy.N+"%"}</div>
+                  <div className="infoDiv" style={{width:"40px"}}>{"#"+(idx+1)}</div>
+                  <div className="infoDiv" style={{width:"80px"}}>{obj.playerName.S}</div>
+                  <div className="infoDiv" style={{width:"75px"}}>{obj.points.N}</div>
+                  <div className="infoDiv" style={{width:"45px"}}>{obj.wpm.N}</div>
+                  <div className="infoDiv" style={{width:"65px"}}>{obj.accuracy.N+"%"}</div>
                 </Stack>
               )
             })}

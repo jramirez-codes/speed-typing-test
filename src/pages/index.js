@@ -150,8 +150,10 @@ export default function IndexPage() {
                 }
               }}
               >
-                <Results wpm={wpm} accuracy={accuracy}/>
-                <button style={{marginTop:'2vh'}} onClick={()=>{handleReset()}}>Reset</button>
+                <div className="results">
+                  <Results wpm={wpm} accuracy={accuracy}/>
+                  <button style={{marginTop:'2vh'}} onClick={()=>{handleReset()}}>Reset</button>
+                </div>
               </motion.div>
             ):(
               <></>
