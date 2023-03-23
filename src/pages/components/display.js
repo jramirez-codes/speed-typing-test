@@ -117,7 +117,6 @@ export default function Display(props) {
             })
           }
         });
-        // console.log(viewData)
         refSetDisplay(viewData)
       }
     }
@@ -141,7 +140,6 @@ export default function Display(props) {
           return(
             <h2 key={idx} style={{backgroundColor: obj.statusColor}}>{obj.value}</h2>
           )
-
         })}
       </Stack>
     </div>

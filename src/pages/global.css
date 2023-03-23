@@ -130,5 +130,13 @@ h2 {
   border-radius: 5px;
   padding-bottom: 1vh;
   padding-top: 1vh;
-  width: 250px;
+  /* max-width: 300px; */
+  min-width: 250px;
+}
+
+.lastestRun {
+  border: #161618 solid 1px;
+  padding: 3%;
+  margin-top: 1vh;
+  border-radius: 20px;
 }

@@ -3,7 +3,7 @@ import Controls from "./components/controls";
 import Display from "./components/display";
 import Results from "./components/results";
 import UserHelp from "./components/userHelp";
-import { Grid } from "@mui/material";
+import { Grid, Box , Stack } from "@mui/material";
 import { motion } from "framer-motion";
 import senData from '../assets/sentances.json'
 import './global.css'
@@ -116,12 +116,23 @@ export default function IndexPage() {
       <Grid container spacing={0} style={{}}>
         <Grid item xs={12} sm={5} md={4} lg={3}>
           <div className="controls">
-            <Controls 
-            handleClick={handleClick} 
-            hadEnded={finish} 
-            hasStarted={start} 
-            start={startTime}
-            handleReset={handleReset}/>
+            <Grid container>
+              <Grid item xs={7} sm={12} md={12} lg={12}>
+                  <Controls 
+                  handleClick={handleClick} 
+                  hadEnded={finish} 
+                  hasStarted={start} 
+                  start={startTime}
+                  handleReset={handleReset}/>
+              </Grid>
+              <Grid item xs={5} sm={12} md={12} lg={12}>
+                <div className="lastestRun">
+                  <p style={{textAlign:'left', marginLeft:'2vw',marginTop:'-1vh', color: '#161618'}}>Latest Run</p>
+                  <Results wpm={wpm} accuracy={accuracy}/>
+                  <button style={{marginTop:'2vh'}} onClick={()=>{handleReset()}}>Reset</button>
+                </div>
+              </Grid>
+            </Grid>
           </div>
         </Grid>
         <Grid item xs={12} sm={7} md={8} lg={9}>
@@ -133,7 +144,7 @@ export default function IndexPage() {
             ):(
               <UserHelp/>
             )}
-            {finish?(
+            {/* {!finish?(
               <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -150,14 +161,28 @@ export default function IndexPage() {
                 }
               }}
               >
-                <div className="results">
-                  <Results wpm={wpm} accuracy={accuracy}/>
-                  <button style={{marginTop:'2vh'}} onClick={()=>{handleReset()}}>Reset</button>
-                </div>
+                <Box 
+                display="flex"
+                justifyContent="center"
+                >
+                  <Grid container spacing={1}>
+                    <Grid item xs={12} sm={6} md={6} lg={6}>
+                      <div>
+                        <Results wpm={wpm} accuracy={accuracy}/>
+                        <button style={{marginTop:'2vh'}} onClick={()=>{handleReset()}}>Reset</button>
+                      </div>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={6} lg={6}>
+                      <div className="results">
+                        <h1>Test</h1>
+                      </div>
+                    </Grid>
+                  </Grid>
+                </Box>
               </motion.div>
             ):(
               <></>
-            )}
+            )} */}
             {results?(
                 <Rankings/>
                 // Should be Leader rankings

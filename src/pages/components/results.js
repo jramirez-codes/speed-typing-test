@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack, Box, Alert, Grid } from "@mui/material";
+import { Stack, Box, Grid } from "@mui/material";
 
 export default function Results(props) {
   return(
@@ -25,7 +25,6 @@ export default function Results(props) {
             <Grid item xs={9} sm={9} md={9} lg={9}>
               <h4 style={{textAlign:'left'}}>Typing Accuracy</h4>
             </Grid>
-            {/* <Grid item xs={1} sm={1} md={1} lg={1}/> */}
             <Grid item xs={3} sm={3} md={3} lg={3}>
               <div className="infoDiv">{props.accuracy}</div>
             </Grid>

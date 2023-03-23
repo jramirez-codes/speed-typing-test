@@ -21,7 +21,7 @@ export default function Controls(props) {
     if(ref.current && window.innerWidth) {
       if((window.innerWidth - ref.current.offsetWidth) > 50) {
         var newHeight = window.innerHeight - headerOffset
-        setNewStyle({maxHeight: "100%", height:newHeight})
+        // setNewStyle({maxHeight: "100%", height:newHeight})
       }
     }
   }, []);
@@ -39,7 +39,7 @@ export default function Controls(props) {
       if(ref.current && window.innerWidth) {
         if((window.innerWidth - ref.current.offsetWidth) > 50) {
           var newHeight = window.innerHeight - headerOffset
-          setNewStyle({maxHeight: "100%", height: newHeight})
+          // setNewStyle({maxHeight: "100%", height: newHeight})
         }
         else {
           setNewStyle({})
