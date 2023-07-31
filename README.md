@@ -1,5 +1,8 @@
 # Speed Typing Test - Web Application
 
+# Play On
+jordanramirez.com/projects/speed-typing-test
+
 # Node Version
 This project runs on Node v18.13.0
 
